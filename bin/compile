@@ -120,8 +120,8 @@ echo "dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PUBL
 dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PUBLISH_JSON_FILE} --runtime ${CORE_RUNTIME}
 print "dotnet publish ended."
 
-PROJECT_NAME=$(grep -Po '"'"outputName"'"\s*:\s*"\K([^"]*)'  ${PUBLISH_JSON_FILE})
-print "${PROJECT_NAME}.dll has been created."
+#PROJECT_NAME=$(grep -Po '"'"outputName"'"\s*:\s*"\K([^"]*)'  ${PUBLISH_JSON_FILE})
+#print "${PROJECT_NAME}.dll has been created."
 
 mkdir -p ${BUILD_DIR}/.profile.d
 cat <<EOF >${BUILD_DIR}/.profile.d/000_apt.sh
@@ -136,5 +136,5 @@ EOF
 
 print "Procfile setting"
 cat <<EOF >${BUILD_DIR}/Procfile
-web: dotnet ${HOME}/${PROJECT_NAME}.dll http://0.0.0.0:\$PORT ${CORE_ENV}
+web: Microsoft.AspNet.Server.Kestrel
 EOF
