@@ -109,7 +109,7 @@ export PATH="${HOME}/dotnet:${PATH}"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
 
 print "dotnet restore all dependencies"
-dotnet restore --no-cache
+dotnet restore ${SRC_DIR} --no-cache
 print "dotnet restore all dependencies completed"
 
 #dotnet pulish using project.json
