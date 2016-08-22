@@ -112,13 +112,15 @@ print "dotnet restore all dependencies"
 dotnet restore ${SRC_DIR} --no-cache
 print "dotnet restore all dependencies completed"
 
+PUBLISH_JSON_FILE="${SRC_DIR}/src/QZ.PublicApi/project.json"
+
 #dotnet pulish using project.json
 print "dotnet publish starts."
-echo "dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PROJECT_JSON_FILE} --runtime ${CORE_RUNTIME}"
-dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PROJECT_JSON_FILE} --runtime ${CORE_RUNTIME}
+echo "dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PUBLISH_JSON_FILE} --runtime ${CORE_RUNTIME}"
+dotnet publish --output ${BUILD_DIR} --configuration ${CORE_CONFIG} ${PUBLISH_JSON_FILE} --runtime ${CORE_RUNTIME}
 print "dotnet publish ended."
 
-PROJECT_NAME=$(grep -Po '"'"outputName"'"\s*:\s*"\K([^"]*)'  ${PROJECT_JSON_FILE})
+PROJECT_NAME=$(grep -Po '"'"outputName"'"\s*:\s*"\K([^"]*)'  ${PUBLISH_JSON_FILE})
 print "${PROJECT_NAME}.dll has been created."
 
 mkdir -p ${BUILD_DIR}/.profile.d
