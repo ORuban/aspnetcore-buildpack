@@ -136,5 +136,5 @@ EOF
 
 print "Procfile setting"
 cat <<EOF >${BUILD_DIR}/Procfile
-web: dotnet QZ.PublicApi.dll http://0.0.0.0:\$PORT ${CORE_ENV}
+web: dotnet QZ.PublicApi.dll --server.urls=http://0.0.0.0:\$PORT ${CORE_ENV}
 EOF
