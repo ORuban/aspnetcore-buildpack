@@ -57,6 +57,11 @@ echo $(TEST_VAR1)
 echo "printenv"
 printenv
 
+export `heroku config -s`
+
+echo "printenv"
+printenv
+
 LD_DIR=`cd $(dirname $0); cd ..; pwd`
 export_env_dir ${ENV_DIR}
 
