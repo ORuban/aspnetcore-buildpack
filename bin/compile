@@ -64,7 +64,6 @@ print "Build Dir Path: ${SRC_DIR}"
 # Find project.json
 PROJECT_JSON_FILES=$(find ${SRC_DIR}/. -maxdepth 3 -iname "project.json")
 printf 'Found %s project.json files\n' $(echo "$PROJECT_JSON_FILES" | wc -l | tr -d ' ')
-PROJECT_JSON_FILE=$(echo "$PROJECT_JSON_FILES" | head -1)
 
 if [ -n "$BUILD_DEBUG" ]; then
 	CORE_CONFIG="Debug"
@@ -112,7 +111,7 @@ print "dotnet restore all dependencies"
 dotnet restore ${SRC_DIR} --no-cache
 print "dotnet restore all dependencies completed"
 
-PUBLISH_JSON_FILE="${SRC_DIR}/src/QZ.PublicApi/project.json"
+PUBLISH_JSON_FILE="${SRC_DIR}${PUBLISH_APP_DIR}/project.json"
 
 #dotnet pulish using project.json
 print "dotnet publish starts."
@@ -136,5 +135,5 @@ EOF
 
 print "Procfile setting"
 cat <<EOF >${BUILD_DIR}/Procfile
-web: dotnet QZ.PublicApi.dll --server.urls=http://0.0.0.0:\$PORT ${CORE_ENV}
+web: dotnet ${LAUNCH_ASSEMBLY_NAME} --server.urls=http://0.0.0.0:\$PORT ${CORE_ENV}
 EOF
