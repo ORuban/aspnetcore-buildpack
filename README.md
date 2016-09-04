@@ -1,2 +1,2 @@
 # aspnetcore-buildpack
-ASP Net Core Buildpack
+ASP.NET Core 1.0 Buildpack
