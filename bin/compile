@@ -148,5 +148,5 @@ EOF
 
 print "Procfile setting"
 cat <<EOF >${BUILD_DIR}/Procfile
-web: dotnet $LAUNCH_ASSEMBLY_NAME --server.urls=http://0.0.0.0:\$PORT ${CORE_ENV}
+web: cd \$HOME && dotnet $LAUNCH_ASSEMBLY_NAME --server.urls=http://0.0.0.0:\$PORT ${CORE_ENV}
 EOF
