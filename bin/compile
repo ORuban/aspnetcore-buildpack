@@ -12,8 +12,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-npm -v
-bower -v
+#npm -v
+#bower -v
 
 #: ${LIBUV_VERSION:="1.8.0"}
 : ${CORE_BRANCH:="Sdk"}
